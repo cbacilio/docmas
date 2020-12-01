@@ -1,0 +1,23 @@
+<div class="container">
+  <h3 mat-dialog-title>¿Seguro que desea eliminar el cliente?</h3>
+  <div mat-dialog-content>
+    Id: {{data.id}}
+    <p></p>
+    Nombre: {{data.nombre}}
+    <p></p>
+    Apellido Paterno: {{data.apellidoPaterno}}
+    <p></p>
+    Apellido Materno: {{data.apellidoMaterno}}
+    <p></p>
+    Apellido Fecha de nacimiento: {{data.fechaNacimiento | date:'yyyy/MM/dd'}}
+    <p></p>
+    Ingresos: {{data.ingresos}}
+    <p></p>
+    Código Postal: {{data.codigoPostal}}
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+  </div>
+</div>

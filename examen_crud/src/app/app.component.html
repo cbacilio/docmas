@@ -1,0 +1,91 @@
+<mat-toolbar color="primary">
+  <span>Gestión de clientes de INTERCAM</span>
+  <span class="spacer"></span>
+  Refrescar tabla:
+  <button mat-icon-button (click)="refrescar()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container mat-elevation-z8">
+
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filtrar por ID">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+      <mat-cell *matCellDef="let row" >{{row.id}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+    </ng-container>
+ 
+    <ng-container matColumnDef="apellidoPaterno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Apellido paterno</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.apellidoPaterno}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidoMaterno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Apellido materno</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.apellidoMaterno}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaNacimiento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de nacimiento</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fechaNacimiento | date:'yyyy/MM/dd'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ingresos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Ingresos</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.ingresos | currency}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="codigoPostal">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Código postal</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.codigoPostal}}</mat-cell>
+    </ng-container>
+
+   
+    <ng-container matColumnDef="actions">
+    
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button color="basic" (click)="startEdit(i, row.id, row.nombre, row.apellidoPaterno,row.apellidoMaterno, row.fechaNacimiento, row.ingresos,row.codigoPostal)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="basic" (click)="deleteItem(i, row.id, row.nombre, row.apellidoPaterno,row.apellidoMaterno, row.fechaNacimiento, row.ingresos,row.codigoPostal)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-flat-button color="primary" (click)="addNew()">
+        Agregar
+        </button>
+      </mat-header-cell>
+
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+    No results
+  </div>
+
+  <mat-paginator #paginator
+                 [length]="dataSource.filteredData.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>
