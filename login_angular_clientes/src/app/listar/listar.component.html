@@ -1,0 +1,91 @@
+<mat-toolbar color="primary">
+    <span>Información de Pagos INTERCAM</span>
+    <span class="spacer"></span>
+    Refrescar tabla:
+    <button mat-icon-button (click)="refrescar()">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  <div class="container mat-elevation-z8">
+    <div class="form">
+      <mat-form-field floatPlaceholder="never" color="accent">
+        <input matInput #filter placeholder="Filtrar por ID">
+      </mat-form-field>
+    </div>
+  
+    <!--tapDescripcion: string;
+    tpaCausaEstatus: string;
+    tpaEstatus: number;
+    tpaFHAlta: string;
+    tpaFHEstatus: string;
+    tpaFHModifica: string;
+    tpaObservaciones: string;
+    tpaUsuAlta: string;
+    tpaUsuModifica: string;-->
+  
+    <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+      <ng-container matColumnDef="tpaId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+        <mat-cell *matCellDef="let row" >{{row.tpaId}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="tapDescripcion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tapDescripcion}}</mat-cell>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="tpaUsuAlta">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario alta</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tpaUsuAlta}}</mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="tpaCausaEstatus">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Causa estatus</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tpaCausaEstatus}}</mat-cell>
+      </ng-container>
+  
+      
+      <ng-container matColumnDef="tpaObservaciones">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.tpaObservaciones}}</mat-cell>
+      </ng-container>
+     
+    
+  
+  
+      <ng-container matColumnDef="actions">
+        <mat-cell *matCellDef="let row; let i=index;">
+          <button mat-icon-button color="basic" (click)="startEdit(i, row.id, row.nombre, row.apellidoPaterno,row.apellidoMaterno, row.fechaNacimiento, row.ingresos,row.codigoPostal)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="basic" (click)="deleteItem(i, row.id, row.nombre, row.apellidoPaterno,row.apellidoMaterno, row.fechaNacimiento, row.ingresos,row.codigoPostal)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </mat-cell>
+  
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-flat-button color="primary" (click)="addNew()">
+          Agregar
+          </button>
+        </mat-header-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+  
+    <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+      No results
+    </div>
+  
+    <mat-paginator #paginator
+                   [length]="dataSource.filteredData.length"
+                   [pageIndex]="0"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+  
