@@ -1,0 +1,48 @@
+<div class="container">
+  <h3 mat-dialog-title>Agregar cliente</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" maxlength="20" required ></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Apellido Paterno" [(ngModel)]="data.apellidoPaterno" name="apellidoPaterno" maxlength="20" required>
+      </mat-form-field>
+    </div>
+
+   <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Apellido Materno" [(ngModel)]="data.apellidoMaterno" name="apellidoMaterno">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Sexo" [(ngModel)]="data.sexo" name="sexo" type="string" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Edad" [(ngModel)]="data.edad" name="edad" type="number " maxlength="9">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="RFC" [(ngModel)]="data.rfc" name="rfc" type="string " maxlength="12" required>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Guardar</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </form>
+</div>
