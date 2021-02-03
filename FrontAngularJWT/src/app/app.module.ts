@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login.component';
 import { UserComponent } from './users/user/user.component';
 import { AdminComponent } from './users/admin/admin.component';
 import { RegistroComponent } from './registro/registro.component';
+import {MatTableModule} from '@angular/material/table'; 
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { RegistroComponent } from './registro/registro.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatTableModule
   ],
   providers: [interceptorProvider],
   bootstrap: [AppComponent]
