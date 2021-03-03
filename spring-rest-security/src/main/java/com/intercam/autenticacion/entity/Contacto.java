@@ -1,5 +1,7 @@
 package com.intercam.autenticacion.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,19 +13,29 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="producto")
+@Table(name="contacto")
 @Getter
 @Setter
-public class Producto {
+public class Contacto {
 
+	public Contacto() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_PRODUCTO")
-	private long idProducto;
+	@Column(name="ID_CONTACTO")
+	private long idContacto;
 	
-	@Column(name="DESCRIPCION")
-	private String descripcion;
-
+	@Column(name="ID_CLIENTE")
+	private long idCliente;
+	
+	@Column(name="EMAIL")
+	private String email;
+	
+	@Column(name="TELEFONO")
+	private String telefono;
+	
+	
 	
 }

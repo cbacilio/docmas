@@ -21,10 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.intercam.autenticacion.dto.Mensaje;
-import com.intercam.autenticacion.entity.Cliente;
-import com.intercam.autenticacion.entity.Producto;
+import com.intercam.autenticacion.entity.Direccion;
+import com.intercam.autenticacion.entity.Venta;
 import com.intercam.autenticacion.exception.ResourceNotFoundException;
-import com.intercam.autenticacion.service.ProductoService;
+import com.intercam.autenticacion.service.VentaService;
+
 
 /**
  * Clase que expone los servicios REST de ventas Tellas Company
@@ -35,61 +36,63 @@ import com.intercam.autenticacion.service.ProductoService;
 @CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
 		RequestMethod.DELETE })
 @RestController
-@RequestMapping(path = "/producto")
-public class ProductoController {
+@RequestMapping(path = "/venta")
+public class VentaController {
 
 	@Autowired
-	ProductoService productoService;
+	private VentaService ventaService;
 
 	/**
-	 * Operaciones producto
+	 * Operaciones venta
 	 */
 	@CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.GET })
-	@GetMapping(path = "/listarProducto")
-	public List<Producto> getAllProducto() {
-		return productoService.obtenerTodos();
+	@GetMapping(path = "/listarVenta")
+	public List<Venta> getAllVenta() {
+		return ventaService.obtenerTodos();
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.POST })
-	@PostMapping("/addProducto")
-	public Producto createProducto(@Valid @RequestBody Producto producto) {
-		return productoService.guardar(producto);
+	@PostMapping("/addVenta")
+	public Venta createProducto(@Valid @RequestBody Venta venta) {
+		return ventaService.guardar(venta);
 	}
-
+	
 	@GetMapping("/detalle/{id}")
-	public ResponseEntity<Producto> getOne(@PathVariable Long id) {
-		if (!productoService.existePorId(id))
-			return new ResponseEntity(new Mensaje("no existe el producto"), HttpStatus.NOT_FOUND);
-		Producto producto = productoService.obtenerPorId(id).get();
-		return new ResponseEntity<Producto>(producto, HttpStatus.OK);
+	public ResponseEntity<Venta> getOne(@PathVariable Long id) {
+		if (!ventaService.existePorId(id))
+			return new ResponseEntity(new Mensaje("no existe la venta"), HttpStatus.NOT_FOUND);
+		Venta venta = ventaService.obtenerPorId(id).get();
+		return new ResponseEntity<Venta>(venta, HttpStatus.OK);
 	}
+	
 
 	@CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.PUT })
-	@PutMapping("/updateProducto/{id}")
-	public ResponseEntity<Producto> updateProducto(@PathVariable(value = "id") Long idProducto,
-			@Valid @RequestBody Producto productoDetalle) throws ResourceNotFoundException {
-		Producto producto = productoService.obtenerPorId(idProducto)
-				.orElseThrow(() -> new ResourceNotFoundException("No existe el producto" + idProducto));
+	@PutMapping("/updateVenta/{id}")
+	public ResponseEntity<Venta> updateVenta(@PathVariable(value = "id") Long idVenta,
+			@Valid @RequestBody Venta ventaDetalle) throws ResourceNotFoundException {
+		Venta venta = ventaService.obtenerPorId(idVenta)
+				.orElseThrow(() -> new ResourceNotFoundException("No existe la venta" + idVenta));
 
-		producto.setDescripcion(productoDetalle.getDescripcion());
+		
+		venta.setDescripcion(ventaDetalle.getDescripcion());
 
-		final Producto updateProducto = productoService.guardar(producto);
-		return ResponseEntity.ok(updateProducto);
+		
+		final Venta updateVenta = ventaService.guardar(venta);
+		return ResponseEntity.ok(updateVenta);
 	}
 
 	@CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.DELETE })
-	@DeleteMapping("/deleteProducto/{id}")
-	public Map<String, Boolean> deleteProducto(@PathVariable(value = "id") Long idProducto)
+	@DeleteMapping("/deleteVenta/{id}")
+	public Map<String, Boolean> deleteVenta(@PathVariable(value = "id") Long idVenta)
 			throws ResourceNotFoundException {
-		Producto producto = productoService.obtenerPorId(idProducto)
-				.orElseThrow(() -> new ResourceNotFoundException("No existe el producto" + idProducto));
+		Venta venta = ventaService.obtenerPorId(idVenta)
+				.orElseThrow(() -> new ResourceNotFoundException("No existe la venta" + idVenta));
 
-		productoService.borrar(producto.getIdProducto());
+		ventaService.borrar(venta.getIdVenta());
 		Map<String, Boolean> response = new HashMap<>();
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
 
-	/* Fin de las operaciones de productos **/
-
+	/* Fin de las operaciones de venta **/
 }

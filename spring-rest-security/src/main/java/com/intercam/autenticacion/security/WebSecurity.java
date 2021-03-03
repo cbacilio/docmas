@@ -67,4 +67,19 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+    
+    /*@Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests()            
+        .antMatchers("/authenticate","/v1/ONG/**")  //Indicamos los recurso al cual si podemos acceder sin tener que logearnos
+            .permitAll()
+        .antMatchers("/**") //Aqui ponemos esto para indicar que todos los recurso con excepción a los indicados anteriormente se bloquean y se necesita autenticación para ser accedidos.
+           .anyRequest().authenticated()
+           .and()
+                .csrf()
+                .disable()
+        .and.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint)
+    .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+    .and.addFilterBefore(jwtRequestFilter,UsernamePasswordAuthenticationFilter.class);
+ }*/
 }

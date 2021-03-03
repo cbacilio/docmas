@@ -27,21 +27,17 @@ public class ProductoService {
         return productoRepository.findById(id);
     }
 
-    public Optional<Producto> obtenerPorNombre(String np){
-        return productoRepository.findByNombreProducto(np);
-    }
-
-    public void guardar(Producto producto){
-        productoRepository.save(producto);
+    public Producto guardar(Producto Producto){
+    	return productoRepository.save(Producto);
     }
 
     public void borrar(Long id){
-        productoRepository.deleteById(id);
+    	productoRepository.deleteById(id);
     }
 
-    public boolean existePorNombre(String np){
-        return productoRepository.existsByNombreProducto(np);
-    }
+   /* public boolean existePorNombre(String nc){
+        return ProductoRepository.existsByNombreProducto(nc);
+    }*/
 
     public boolean existePorId(Long id){
         return productoRepository.existsById(id);
