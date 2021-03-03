@@ -1,0 +1,31 @@
+<div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Num. cliente</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido Paterno</th>
+          <th scope="col">Apellido Materno</th>
+          <th scope="col">Saldo</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Abonos</th>
+          <th scope="col" *ngIf="user === 'admin'">Ver abonos</th>
+        </tr>
+  
+  
+      </thead>
+      <tbody>
+        <tr *ngFor="let cuenta of cuentas">
+          <td>{{cuenta.idCliente}}</td>
+          <td>{{cuenta.nombre}}</td>
+          <td>{{cuenta.apellidoPaterno}}</td>
+          <td>{{cuenta.apellidoMaterno}}</td>
+          <td>{{cuenta.ventas.saldo}}</td>
+          <td>{{cuenta.descripcion}}</td>
+
+          <td *ngIf="user === 'admin'"><button class="btn btn-warning" routerLink="/editar/{{cuenta.idCliente}}">Ver abonos</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+   

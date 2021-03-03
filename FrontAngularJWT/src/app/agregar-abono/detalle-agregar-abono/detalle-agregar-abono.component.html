@@ -1,0 +1,12 @@
+<div *ngIf="abono">
+    <div class="container">
+      <p><b>Cliente </b>{{abono.cliente.idCliente}}</p><br>
+      <p><b>Venta </b>{{abono.venta.descripcion}</p><br>
+      <p><b>Monto </b>{{abono.monto}}</p><br>
+      <p><b>Fecha </b>{{abono.fecha}}</p><br>
+      <div>
+        <button class="btn btn-primary" (click)="volver()">Volver</button>
+      </div>
+    </div>
+  </div>
+  

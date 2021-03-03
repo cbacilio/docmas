@@ -1,4 +1,5 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
   <a class="navbar-brand" href="#">Revisión JWT</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -15,10 +16,23 @@
         <a class="nav-link" routerLink="login">Iniciar Sesión</a>
       </li>
       <li *ngIf="authority === 'user'" class="nav-item">
-          <a class="nav-link" routerLink="usuario">Panel de usuario</a>
+        <a class="nav-link" routerLink="usuario">Panel de usuario</a>
       </li>
+
       <li *ngIf="authority === 'admin'" class="nav-item">
-          <a class="nav-link" routerLink="admin">Panel de Admin</a>
+        <a class="nav-link" routerLink="cuentasxcliente">Cuentas X Cliente</a>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="addVenta">Agregar venta</a>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="addAbono">Agregar abono</a>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="gestionCliente">Gestión clientes</a>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="gestionContacto">Gestión contacto</a>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="gestionDireccion">Gestion dirección</a>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="gestionProducto">Gestion producto</a>
       <li *ngIf="isLogin" class="nav-item">
         <a class="nav-link" (click)="logOut()" style="cursor: pointer;">Cerrar Sesión</a>
       </li>

@@ -1,0 +1,37 @@
+<h5 class="h5">Gestión clientes</h5>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Num. cliente</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido Paterno</th>
+        <th scope="col">Apellido Materno</th>
+        <th scope="col">Edad</th>
+        <th scope="col">Sexo</th>
+        <th scope="col">RFC</th>
+        <th scope="col">Detalle</th>
+        <th scope="col" *ngIf="user === 'admin'">Editar</th>
+        <th scope="col" *ngIf="user === 'admin'">Borrar</th>
+      </tr>
+
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{cliente.idCliente}}</td>
+        <td>{{cliente.nombre}}</td>
+        <td>{{cliente.apellidoPaterno}}</td>
+        <td>{{cliente.apellidoMaterno}}</td>
+        <td>{{cliente.edad}}</td>
+        <td>{{cliente.sexo}}</td>
+        <td>{{cliente.rfc}}</td>
+        <td><button class="btn btn-primary" routerLink="/detalle/{{cliente.idCliente}}">Ver</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-warning" routerLink="/editar/{{cliente.idCliente}}">Editar</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-danger" (click)="onDelete(cliente.idCliente)">Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div><button class="btn btn-success btn-lg" routerLink="/nuevo">Agregar cliente</button></div>
+</div>
+ 

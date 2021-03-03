@@ -10,12 +10,12 @@ const cabecera = {headers: new HttpHeaders({'Content-TYpe': 'application/json'})
 })
 export class ProductoService {
 
-  productoURL = 'http://localhost:8080/api/productos/';
+  productoURL = 'http://localhost:8080/producto/';
 
   constructor(private httpClient: HttpClient) { }
 
   public lista(): Observable<Producto[]> {
-    return this.httpClient.get<Producto[]>(this.productoURL + 'lista', cabecera);
+    return this.httpClient.get<Producto[]>(this.productoURL+ `listarProducto/`, cabecera);
   }
 
   public detalle(id: number): Observable<Producto> {
@@ -23,14 +23,14 @@ export class ProductoService {
   }
 
   public crear(producto: Producto): Observable<any> {
-    return this.httpClient.post<any>(this.productoURL + 'nuevo', producto, cabecera);
+    return this.httpClient.post<any>(this.productoURL + 'addProducto',producto, cabecera);
   }
 
   public editar(producto: Producto, id: number): Observable<any> {
-    return this.httpClient.put<any>(this.productoURL + `actualizar/${id}`, producto, cabecera);
+    return this.httpClient.put<any>(this.productoURL + `updatProducto/${id}`, producto, cabecera);
   }
 
   public borrar(id: number): Observable<any> {
-    return this.httpClient.delete<any>(this.productoURL + `borrar/${id}`, cabecera);
+    return this.httpClient.delete<any>(this.productoURL + `deleteProducto/${id}`, cabecera);
   }
 }

@@ -1,0 +1,33 @@
+<h5 class="h5">Gestión dirección</h5>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Calle</th>
+        <th scope="col">Colonia</th>
+        <th scope="col">Municipio</th>
+        <th scope="col">Estado</th>
+        <th scope="col">CP</th>
+        <th scope="col">Detalle</th>
+        <th scope="col" *ngIf="user === 'admin'">Editar</th>
+        <th scope="col" *ngIf="user === 'admin'">Borrar</th>
+      </tr>
+
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let direccion of direcciones">
+        <td>{{direccion.calle}}</td>
+        <td>{{direccion.colonia}}</td>
+        <td>{{direccion.municipio}}</td>
+        <td>{{direccion.estado}}</td>
+        <td>{{direccion.cp}}</td>
+        <td><button class="btn btn-primary" routerLink="/detalleDireccion/{{direccion.idDireccion}}">Ver</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-warning" routerLink="/editarDireccion/{{direccion.idDireccion}}">Editar</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-danger" (click)="onDelete(direccion.idDireccion)">Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div><button class="btn btn-success btn-lg" routerLink="/nuevoDireccion">Agregar direccion</button></div>
+</div>
+ 

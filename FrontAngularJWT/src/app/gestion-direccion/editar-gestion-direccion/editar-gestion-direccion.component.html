@@ -1,0 +1,44 @@
+<div class="container" *ngIf="form.nombre && !failInit">
+    <h5>Actualizar dirección</h5>
+    <form (ngSubmit)="onUpdate()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="calle">Calle:</label>
+        <input class="form-control" type="text" name="calle" id="calle"
+          [(ngModel)]="form.calle" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="colonia">Colonia:</label>
+        <input class="form-control" type="text" name="colonia" id="colonia"
+          [(ngModel)]="form.colonia" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="municipio">Municipio:</label>
+        <input class="form-control" type="text" name="municipio" id="municipio"
+          [(ngModel)]="form.municipio" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="estado">Estado:</label>
+        <input class="form-control" type="text" name="estado" id="estado"
+          [(ngModel)]="form.estado" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="cp">CP:</label>
+        <input class="form-control" type="text" name="cp" id="cp"
+          [(ngModel)]="form.cp" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!f.valid">Actualizar</button>
+      </div>
+    </form>
+    <div>
+      <button class="btn btn-primary float-left mr-3" (click)="volver()">Volver</button>
+    </div>
+    <br>
+    <br>
+    <div *ngIf="failActualizado" class="float-left">
+      <p class="p-3 bg-danger text-white rounded">Error: {{msjErr}}</p>
+    </div>
+    <div *ngIf="actualizado" class="float-left">
+      <p class="p-3 bg-success text-white rounded">OK: {{msjOK}}</p>
+    </div>
+  </div>

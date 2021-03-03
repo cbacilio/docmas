@@ -1,0 +1,13 @@
+<div *ngIf="direccion">
+    <div class="container">
+      <p><b>Calle </b>{{direccion.calle}}</p><br>
+      <p><b>Colonia </b>{{direccion.colonia}}</p><br>
+      <p><b>Municipio </b>{{direccion.municipio}}</p><br>
+      <p><b>Estado </b>{{direccion.Estado}}</p><br>
+      <p><b>CP </b>{{direccion.cp}}</p><br>
+      <div>
+        <button class="btn btn-primary" (click)="volver()">Volver</button>
+      </div>
+    </div>
+  </div>
+  
