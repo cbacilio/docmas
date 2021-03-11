@@ -1,0 +1,33 @@
+<h5 class="h5">Gestión abono</h5>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Cliente</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Monto</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Detalle</th>
+        <th scope="col" *ngIf="user === 'admin'">Editar</th>
+        <th scope="col" *ngIf="user === 'admin'">Borrar</th>
+      </tr>
+
+
+    </thead>
+    <tbody>
+      <tr *ngFor="let abono of abonos">
+        <td>{{abono.venta.cliente.nombre}}</td>
+        <td>{{abono.venta.producto.descripcion}}</td>
+        <td>{{abono.monto}}</td>
+        <td>{{abono.fecha}}</td>
+
+        
+        <td><button class="btn btn-primary" routerLink="/detalleAbono/{{abono.idAbono}}">Ver</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-warning" routerLink="/editarAbono/{abono.idAbono}}">Editar</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-danger" (click)="onDelete(abono.idAbono)">Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div><button class="btn btn-success btn-lg" routerLink="/nuevoAgregarAbono">Agregar Abono</button></div>
+</div>
+ 

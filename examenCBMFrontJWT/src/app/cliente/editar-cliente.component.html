@@ -1,0 +1,56 @@
+<div class="container" *ngIf="form.nombre && !failInit">
+    <h5>Actualizar Producto</h5>
+    <form (ngSubmit)="onUpdate()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="idCliente">id Cliente:</label>
+        <input class="form-control" type="text" name="idCliente" id="idCliente"
+          [(ngModel)]="form.idCliente" required autocomplete="off" disabled>
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input class="form-control" type="text" name="nombre" id="nombre"
+          [(ngModel)]="form.nombre" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="apellidoPaterno">Apellido Paterno:</label>
+        <input class="form-control" type="text" name="apellidoPaterno" id="apellidoPaterno" [(ngModel)]="form.apellidoPaterno" required
+          autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="apellidoMaterno">Apellido Materno:</label>
+        <input class="form-control" type="text" name="apellidoMaterno" id="apellidoMaterno" [(ngModel)]="form.apellidoMaterno" required
+          autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="edad">Edad:</label>
+        <input class="form-control" type="text" name="edad" id="edad" [(ngModel)]="form.edad" required
+          autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="sexo">Sexo:</label>
+        <input class="form-control" type="text" name="sexo" id="sexo" [(ngModel)]="form.sexo" required
+          autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="rfc">RFC:</label>
+        <input class="form-control" type="text" name="rfc" id="rfc" [(ngModel)]="form.rfc" required
+          autocomplete="off">
+      </div>
+
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!f.valid">Actualizar</button>
+      </div>
+    </form>
+    <div>
+      <button class="btn btn-primary float-left mr-3" (click)="volver()">Volver</button>
+    </div>
+    <br>
+    <br>
+    <div *ngIf="failActualizado" class="float-left">
+      <p class="p-3 bg-danger text-white rounded">Error: {{msjErr}}</p>
+    </div>
+    <div *ngIf="actualizado" class="float-left">
+      <p class="p-3 bg-success text-white rounded">OK: {{msjOK}}</p>
+    </div>
+  </div>

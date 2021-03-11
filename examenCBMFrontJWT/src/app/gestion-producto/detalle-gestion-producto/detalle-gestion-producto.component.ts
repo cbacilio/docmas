@@ -1,0 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import { Producto } from '../../models/producto';
+import { ProductoService } from '../../services/producto.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
+@Component({
+  selector: 'app-detalle-gestion-producto',
+  templateUrl: './detalle-gestion-producto.component.html',
+  styleUrls: ['./detalle-gestion-producto.component.css']
+})
+export class DetalleGestionProductoComponent implements OnInit {
+
+  
+  producto: Producto = null;
+
+  constructor(private productoService: ProductoService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) { }
+
+  ngOnInit() {
+    const id = this.activatedRoute.snapshot.params.id;
+    this.productoService.detalle(id).subscribe(data => {
+      this.producto = data;
+    },
+      err => {
+        this.router.navigate(['']);
+      }
+    );
+  }
+
+  volver(): void {
+    window.history.back();
+  }
+
+}

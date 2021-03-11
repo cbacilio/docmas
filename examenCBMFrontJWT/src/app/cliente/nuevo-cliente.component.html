@@ -1,0 +1,44 @@
+<div class="container">
+    <h5>Agregar cliente</h5>
+    <form name="form" (ngSubmit)="onCreate()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="nombre">Nombre: </label>
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="form.nombre" required
+          autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="apellidoPaterno">Apellido Paterno: </label>
+        <input type="text" class="form-control" name="apellidoPaterno" [(ngModel)]="form.apellidoPaterno" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="apellidoMaterno">Apellido Materno: </label>
+        <input type="text" class="form-control" name="apellidoMaterno" [(ngModel)]="form.apellidoMaterno" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="edad">Edad: </label>
+        <input type="text" class="form-control" name="edad" [(ngModel)]="form.edad" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="sexo">Sexo: </label>
+        <input type="text" class="form-control" name="sexo" [(ngModel)]="form.sexo" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="rfc">RFC: </label>
+        <input type="text" class="form-control" name="rfc" [(ngModel)]="form.rfc" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!f.valid">Crear</button>
+      </div>
+    </form>
+    <div>
+      <button class="btn btn-primary float-left mr-3" (click)="volver()">Volver</button>
+    </div>
+    <br>
+    <br>
+    <div *ngIf="failCliente" class="float-left">
+      <p class="p-3 bg-danger text-white rounded">Error: {{mensajeFail}}</p>
+    </div>
+    <div *ngIf="creado" class="float-left">
+      <p class="p-3 bg-success text-white rounded">OK: {{mensajeOK}}</p>
+    </div>
+  </div>

@@ -1,0 +1,54 @@
+<div class="container">
+  <h3 mat-dialog-nombre>Id de cliente: {{data.id}}</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+
+    <!--Textarea for demo purposes-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <textarea matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" maxlength="20" required></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!--Contains mat-hint for characters count and has maxLengt set-->
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Apellido Paterno" [(ngModel)]="data.apellidoPaterno" name="apellidoPaterno" maxlength="20" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate class="form-control" placeholder="Apellido Materno" [(ngModel)]="data.apellidoMaterno" name="apellidoMaterno" maxlength="20"  >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+ 
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Fecha Nacimiento" [(ngModel)]="data.fechaNacimiento" name="fechaNacimiento" type="date" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Ingresos" [(ngModel)]="data.ingresos" name="ingresos" type="number " maxlength="9">
+        <mat-hint >{{data.ingresos?.length || 0}}/8</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Código postal" [(ngModel)]="data.codigoPostal" name="codigoPostal" type="number " maxlength="6" required>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="updateCliente()">Guardar</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </form>
+</div>

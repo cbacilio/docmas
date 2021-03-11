@@ -1,0 +1,14 @@
+<div *ngIf="venta">
+    <div class="container">
+      <p><b>Producto </b>{{venta.producto.descripcion}}</p><br>
+      <p><b>Nombre cliente </b>{{venta.cliente.nombre}}</p><br>
+      <p><b>Apellido Paterno </b>{{venta.cliente.apellidoPaterno}}</p><br>
+      <p><b>Fecha venta </b>{{venta.fechaVenta}}</p><br>
+      <p><b>Descripción </b>{{venta.descripcion}}</p><br>
+      <p><b>Costo </b>{{venta.costo}}</p><br>
+      <p><b>Enganche </b>{{venta.enganche}}</p><br>
+      <div>
+        <button class="btn btn-primary" (click)="volver()">Volver</button>
+      </div>
+    </div>
+  </div>

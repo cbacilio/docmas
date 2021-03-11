@@ -1,0 +1,41 @@
+<h5 class="h5">Gestión venta</h5>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+     
+        <th scope="col">Producto</th>
+        <th scope="col">Nombre cliente</th>
+        <th scope="col">Apellido Paterno</th>
+        <th scope="col">Fecha venta</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Saldo</th>
+        <th scope="col">Costo</th>
+        <th scope="col">Enganche</th>
+        <th scope="col">Detalle</th>
+        <th scope="col" *ngIf="user === 'admin'">Editar</th>
+        <th scope="col" *ngIf="user === 'admin'">Borrar</th>
+      </tr>
+
+
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let venta of ventas">
+        <td>{{venta.producto.descripcion}}</td>
+        <td>{{venta.cliente.nombre}}</td>
+        <td>{{venta.cliente.apellidoPaterno}}</td>
+        <td>{{venta.fechaVenta}}</td>
+        <td>{{venta.descripcion}}</td>
+        <td>{{venta.saldo}}</td>
+        <td>{{venta.costo}}</td>
+        <td>{{venta.enganche}}</td>
+        <td><button class="btn btn-primary" routerLink="/detalleVenta/{{venta.idVenta}}">Ver</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-warning" routerLink="/editarVenta/{venta.idVenta}}">Editar</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-danger" (click)="onDelete(venta.idVenta)">Borrar</button></td>
+      </tr>
+    </tbody>
+  </table>
+  <div><button class="btn btn-success btn-lg" routerLink="/nuevoAgregarVenta">Agregar venta</button></div>
+</div>
+ 
