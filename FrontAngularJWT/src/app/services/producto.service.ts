@@ -33,4 +33,9 @@ export class ProductoService {
   public borrar(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.productoURL + `deleteProducto/${id}`, cabecera);
   }
+  
+  getProfilesPDF() {
+    return this.httpClient.get(this.productoURL + `report/${'pdf'}`, { responseType: 'blob' });
+}
+
 }

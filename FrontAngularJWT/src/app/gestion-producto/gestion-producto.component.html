@@ -17,11 +17,40 @@
         <td>{{producto.idProducto}}</td>
         <td>{{producto.descripcion}}</td>
         <td><button class="btn btn-primary" routerLink="/detalleProducto/{{producto.idProducto}}">Ver</button></td>
-        <td *ngIf="user === 'admin'"><button class="btn btn-warning" routerLink="/editarProducto/{{producto.idProducto}}">Editar</button></td>
-        <td *ngIf="user === 'admin'"><button class="btn btn-danger" (click)="onDelete(producto.idProducto)">Borrar</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-warning"
+            routerLink="/editarProducto/{{producto.idProducto}}">Editar</button></td>
+        <td *ngIf="user === 'admin'"><button class="btn btn-danger"
+            (click)="onDelete(producto.idProducto)">Borrar</button></td>
       </tr>
     </tbody>
   </table>
-  <div><button class="btn btn-success btn-lg" routerLink="/nuevoProducto">Agregar producto</button></div>
+  <div><button class="btn btn-success btn-lg" routerLink="/nuevoProducto">Agregar producto</button>
+  </div>
+
+
+  <!-- <div class="flota_izq margin_left36">
+    <div class="tooltip margin-tool">
+      <span class="tooltiptext">
+        <div class="ico_pdf" (click)="generaPDF()">
+          <p>PDF</p>
+        </div>
+      </span>
+    </div>
+  </div>-->
+
+  <div *ngIf="documentoCreado"  class="alert alert-success">
+    <p>OK: {{mensajeOK}}</p>
+  </div>
 </div>
- 
+
+
+<!--<div *ngIf="documentoCreado" class="alert alert-success" id="success-alert">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Success!</strong>
+</div>-->
+
+
+<div style="text-align:center">
+  <button (click)="generaPDF()">
+    Generar reporte</button>
+</div>

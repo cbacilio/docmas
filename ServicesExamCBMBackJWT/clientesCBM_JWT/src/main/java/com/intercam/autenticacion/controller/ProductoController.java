@@ -1,14 +1,21 @@
 package com.intercam.autenticacion.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +28,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.intercam.autenticacion.dto.Mensaje;
-import com.intercam.autenticacion.entity.Cliente;
 import com.intercam.autenticacion.entity.Producto;
+import com.intercam.autenticacion.entity.Usuario;
 import com.intercam.autenticacion.exception.ResourceNotFoundException;
 import com.intercam.autenticacion.service.ProductoService;
+
+import net.sf.jasperreports.engine.JRException;
 
 /**
  * Clase que expone los servicios REST de ventas Tellas Company
@@ -89,7 +98,46 @@ public class ProductoController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
+	
+    @GetMapping("/report/{format}")
+    public String generateReport(@PathVariable String format) throws ResourceNotFoundException, FileNotFoundException, JRException {
+        return productoService.exportReport(format);
+    }
 
+	
+
+	/*@GetMapping("/exportPerfilPDF")
+	public ResponseEntity<HttpStatus> getProfilesPDF(ServletRequest request, ServletResponse response)
+			throws IOException, ClassNotFoundException {
+
+		HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+		Usuario usuario = (Usuario) httpServletRequest.getSession().getAttribute(Const.USER_ATTRIBUTE);
+
+		if (usuario != null) {
+			List<Producto> bancaDigitals = new ArrayList<Producto>();
+			bancaDigitals.addAll(usuario.getBancaDigital());
+
+			List<BancaUsuario> bancaUsuarios = new ArrayList<BancaUsuario>();
+			for (BancaDigital bancaDigital : bancaDigitals) {
+				bancaUsuarios.addAll(bancaUsuarioService.findByIdBancaDigital(bancaDigital));
+			}
+
+			JasperPrint jasperPrint = pdfService.getReporteListaPerfiles(bancaUsuarios);
+			byte[] pdfByteArray = JasperExportManager.exportReportToPdf(jasperPrint);
+			response.setContentType("application/pdf;charset=windows-1252");
+
+			response.setContentLength(pdfByteArray.length);
+			javax.servlet.ServletOutputStream out = response.getOutputStream();
+			out.write(pdfByteArray, 0, pdfByteArray.length);
+			out.flush();
+			out.close();
+
+		} else {
+			throw new BadCredentialsException(BDException.USUARIO_INCORRECTO);
+		}
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+*/
 	/* Fin de las operaciones de productos **/
 
 }
